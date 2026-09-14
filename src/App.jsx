@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/layout/index.jsx'
 import Dashboard from './pages/dashboard.jsx'
 import Markets from './pages/markets.jsx'
@@ -8,35 +8,21 @@ import Traders from './pages/traders.jsx'
 import Settings from './pages/settings.jsx'
 import './App.css'
 
-const PAGES = {
-  dashboard: Dashboard,
-  markets: Markets,
-  orders: Orders,
-  positions: Positions,
-  traders: Traders,
-  settings: Settings,
-}
-
 function App() {
-  const [currentPage, setCurrentPage] = useState('dashboard')
-  const [search, setSearch] = useState('')
-
-  const Page = PAGES[currentPage] ?? Dashboard
-
-  function handleNavigate(pageId) {
-    setCurrentPage(pageId)
-    setSearch('')
-  }
-
   return (
-    <Layout
-      currentPage={currentPage}
-      onNavigate={handleNavigate}
-      search={search}
-      onSearchChange={setSearch}
-    >
-      <Page query={search} />
-    </Layout>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="markets" element={<Markets />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="positions" element={<Positions />} />
+          <Route path="traders" element={<Traders />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -1,3 +1,5 @@
+import { useOutletContext } from 'react-router-dom'
+
 const ORDERS = [
   { id: 'ORD-1042', symbol: 'AAPL', side: 'Buy', type: 'Limit', qty: 50, status: 'Working' },
   { id: 'ORD-1041', symbol: 'NVDA', side: 'Buy', type: 'Market', qty: 40, status: 'Filled' },
@@ -6,7 +8,8 @@ const ORDERS = [
   { id: 'ORD-1038', symbol: 'AMZN', side: 'Sell', type: 'Limit', qty: 15, status: 'Cancelled' },
 ]
 
-export default function Orders({ query = '' }) {
+export default function Orders() {
+  const { query = '' } = useOutletContext()
   const term = query.trim().toLowerCase()
   const rows = ORDERS.filter(
     (row) =>

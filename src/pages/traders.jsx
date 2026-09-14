@@ -1,3 +1,5 @@
+import { useOutletContext } from 'react-router-dom'
+
 const TRADERS = [
   { name: 'Maya Chen', desk: 'Equities', status: 'Active', pnl: '+$18,420' },
   { name: 'Omar Haddad', desk: 'Options', status: 'Active', pnl: '+$9,110' },
@@ -5,7 +7,8 @@ const TRADERS = [
   { name: 'Jonah Park', desk: 'Equities', status: 'Active', pnl: '+$4,880' },
 ]
 
-export default function Traders({ query = '' }) {
+export default function Traders() {
+  const { query = '' } = useOutletContext()
   const term = query.trim().toLowerCase()
   const rows = TRADERS.filter(
     (row) =>

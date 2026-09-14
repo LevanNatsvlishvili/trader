@@ -1,42 +1,40 @@
 import { useState } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from './sidebar/index.jsx'
 import Topbar from './topbar/index.jsx'
 import './layout.css'
 
-export default function Layout({
-  currentPage,
-  onNavigate,
-  search,
-  onSearchChange,
-  children,
-}) {
+function MainPane({ onToggleMobile }) {
+  const [search, setSearch] = useState('')
+
+  return (
+    <div className="admin-main">
+      <Topbar
+        onToggleMobile={onToggleMobile}
+        search={search}
+        onSearchChange={setSearch}
+      />
+      <main className="admin-content">
+        <Outlet context={{ query: search }} />
+      </main>
+    </div>
+  )
+}
+
+export default function Layout() {
+  const { pathname } = useLocation()
   const [collapsed, setCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-
-  function handleNavigate(pageId) {
-    onNavigate(pageId)
-    setMobileOpen(false)
-  }
 
   return (
     <div className={`admin-shell${collapsed ? ' is-collapsed' : ''}`}>
       <Sidebar
-        currentPage={currentPage}
-        onNavigate={handleNavigate}
         collapsed={collapsed}
         onToggleCollapsed={() => setCollapsed((value) => !value)}
         mobileOpen={mobileOpen}
         onCloseMobile={() => setMobileOpen(false)}
       />
-      <div className="admin-main">
-        <Topbar
-          currentPage={currentPage}
-          onToggleMobile={() => setMobileOpen((value) => !value)}
-          search={search}
-          onSearchChange={onSearchChange}
-        />
-        <main className="admin-content">{children}</main>
-      </div>
+      <MainPane key={pathname} onToggleMobile={() => setMobileOpen((value) => !value)} />
     </div>
   )
 }

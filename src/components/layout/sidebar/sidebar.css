@@ -85,6 +85,8 @@
   background: transparent;
   color: var(--text);
   text-align: left;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .nav-item:hover,

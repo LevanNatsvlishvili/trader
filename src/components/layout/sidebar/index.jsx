@@ -1,10 +1,9 @@
+import { NavLink } from 'react-router-dom'
 import { NAV_ITEMS } from '../nav.js'
 import IconCollapse from '../../icons/IconCollapse.jsx'
 import './sidebar.css'
 
 export default function Sidebar({
-  currentPage,
-  onNavigate,
   collapsed,
   onToggleCollapsed,
   mobileOpen,
@@ -46,22 +45,21 @@ export default function Sidebar({
         <nav className="sidebar-nav">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon
-            const isActive = currentPage === item.id
 
             return (
-              <button
-                key={item.id}
-                type="button"
-                className={`nav-item${isActive ? ' is-active' : ''}`}
-                onClick={() => onNavigate(item.id)}
-                aria-current={isActive ? 'page' : undefined}
+              <NavLink
+                key={item.path}
+                to={item.path}
+                end={item.path === '/'}
+                className={({ isActive }) => `nav-item${isActive ? ' is-active' : ''}`}
                 title={collapsed ? item.label : undefined}
+                onClick={onCloseMobile}
               >
                 <span className="nav-icon">
                   <Icon />
                 </span>
                 <span className="nav-label">{item.label}</span>
-              </button>
+              </NavLink>
             )
           })}
         </nav>

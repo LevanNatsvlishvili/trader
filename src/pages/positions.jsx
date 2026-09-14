@@ -1,3 +1,5 @@
+import { useOutletContext } from 'react-router-dom'
+
 const POSITIONS = [
   { symbol: 'AAPL', qty: 120, avg: '217.80', mark: '228.14', pnl: '+1,240' },
   { symbol: 'NVDA', qty: 40, avg: '98.10', mark: '119.62', pnl: '+860' },
@@ -5,7 +7,8 @@ const POSITIONS = [
   { symbol: 'TSLA', qty: -25, avg: '227.40', mark: '239.80', pnl: '-310' },
 ]
 
-export default function Positions({ query = '' }) {
+export default function Positions() {
+  const { query = '' } = useOutletContext()
   const term = query.trim().toLowerCase()
   const rows = POSITIONS.filter((row) => !term || row.symbol.toLowerCase().includes(term))
 

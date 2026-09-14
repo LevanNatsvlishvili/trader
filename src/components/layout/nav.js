@@ -8,14 +8,14 @@ import {
 } from '../icons/index.js'
 
 export const NAV_ITEMS = [
-  { id: 'dashboard', label: 'Dashboard', icon: IconDashboard },
-  { id: 'markets', label: 'Markets', icon: IconMarkets },
-  { id: 'orders', label: 'Orders', icon: IconOrders },
-  { id: 'positions', label: 'Positions', icon: IconPositions },
-  { id: 'traders', label: 'Traders', icon: IconTraders },
-  { id: 'settings', label: 'Settings', icon: IconSettings },
+  { path: '/', label: 'Dashboard', icon: IconDashboard },
+  { path: '/markets', label: 'Markets', icon: IconMarkets },
+  { path: '/orders', label: 'Orders', icon: IconOrders },
+  { path: '/positions', label: 'Positions', icon: IconPositions },
+  { path: '/traders', label: 'Traders', icon: IconTraders },
+  { path: '/settings', label: 'Settings', icon: IconSettings },
 ]
 
-export function getNavItem(id) {
-  return NAV_ITEMS.find((item) => item.id === id)
+export function getNavItem(pathname) {
+  return NAV_ITEMS.find((item) => item.path === pathname) ?? NAV_ITEMS[0]
 }

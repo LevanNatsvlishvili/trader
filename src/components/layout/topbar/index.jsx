@@ -1,11 +1,13 @@
+import { useLocation } from 'react-router-dom'
 import IconBell from '../../icons/IconBell.jsx'
 import IconMenu from '../../icons/IconMenu.jsx'
 import IconSearch from '../../icons/IconSearch.jsx'
 import { getNavItem } from '../nav.js'
 import './topbar.css'
 
-export default function Topbar({ currentPage, onToggleMobile, search, onSearchChange }) {
-  const current = getNavItem(currentPage)
+export default function Topbar({ onToggleMobile, search, onSearchChange }) {
+  const { pathname } = useLocation()
+  const current = getNavItem(pathname)
 
   return (
     <header className="topbar">
@@ -20,7 +22,7 @@ export default function Topbar({ currentPage, onToggleMobile, search, onSearchCh
         </button>
         <div className="topbar-title">
           <p>Admin</p>
-          <h1>{current?.label ?? 'Dashboard'}</h1>
+          <h1>{current.label}</h1>
         </div>
       </div>
 

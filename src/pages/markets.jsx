@@ -1,3 +1,5 @@
+import { useOutletContext } from 'react-router-dom'
+
 const MARKETS = [
   { symbol: 'AAPL', name: 'Apple Inc.', price: '228.14', change: '+1.12%' },
   { symbol: 'NVDA', name: 'NVIDIA Corp.', price: '119.62', change: '+2.04%' },
@@ -7,7 +9,8 @@ const MARKETS = [
   { symbol: 'META', name: 'Meta Platforms', price: '512.35', change: '+0.67%' },
 ]
 
-export default function Markets({ query = '' }) {
+export default function Markets() {
+  const { query = '' } = useOutletContext()
   const term = query.trim().toLowerCase()
   const rows = MARKETS.filter(
     (row) =>
