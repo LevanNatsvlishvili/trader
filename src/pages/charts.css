@@ -1,0 +1,81 @@
+.journal-table-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.4rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg);
+}
+
+.journal-table-wrap::-webkit-scrollbar {
+  height: 0.8rem;
+}
+
+.journal-table-wrap::-webkit-scrollbar-track {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.journal-table-wrap::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #1ea36c, var(--accent));
+  border: 2px solid var(--bg);
+  border-radius: 999px;
+}
+
+.journal-table-wrap::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.journal-table {
+  min-width: 148rem;
+}
+
+.journal-table td,
+.journal-table th {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.journal-table th:first-child,
+.journal-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--bg-elevated);
+  box-shadow: 1.2rem 0 1.2rem -1rem rgba(0, 0, 0, 0.55);
+}
+
+.journal-table thead th:first-child {
+  z-index: 2;
+}
+
+.journal-table .pl-cell {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.pill.win {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.pill.lose {
+  color: var(--danger);
+  background: rgba(255, 107, 122, 0.12);
+}
+
+.pill.na {
+  color: var(--muted);
+}
+
+.journal-status {
+  color: var(--muted);
+  padding: 2.4rem 0.8rem;
+  text-align: center;
+}
