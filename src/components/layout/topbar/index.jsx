@@ -1,5 +1,8 @@
-import { IconBell, IconMenu, IconSearch } from '../icons.jsx'
+import IconBell from '../../icons/IconBell.jsx'
+import IconMenu from '../../icons/IconMenu.jsx'
+import IconSearch from '../../icons/IconSearch.jsx'
 import { getNavItem } from '../nav.js'
+import './topbar.css'
 
 export default function Topbar({ currentPage, onToggleMobile, search, onSearchChange }) {
   const current = getNavItem(currentPage)

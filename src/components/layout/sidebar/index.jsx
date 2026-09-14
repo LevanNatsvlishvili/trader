@@ -1,5 +1,6 @@
 import { NAV_ITEMS } from '../nav.js'
-import { IconCollapse } from '../icons.jsx'
+import IconCollapse from '../../icons/IconCollapse.jsx'
+import './sidebar.css'
 
 export default function Sidebar({
   currentPage,
@@ -14,7 +15,7 @@ export default function Sidebar({
       {mobileOpen ? (
         <button
           type="button"
-          className="sidebar-backdrop"
+          className="sidebar-backdrop is-visible"
           aria-label="Close navigation"
           onClick={onCloseMobile}
         />

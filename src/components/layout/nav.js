@@ -5,7 +5,7 @@ import {
   IconPositions,
   IconSettings,
   IconTraders,
-} from './icons.jsx'
+} from '../icons/index.js'
 
 export const NAV_ITEMS = [
   { id: 'dashboard', label: 'Dashboard', icon: IconDashboard },
