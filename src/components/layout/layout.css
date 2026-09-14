@@ -20,14 +20,3 @@
 .admin-content {
   padding: 24px;
 }
-
-@media (max-width: 860px) {
-  .admin-shell,
-  .admin-shell.is-collapsed {
-    grid-template-columns: 1fr;
-  }
-
-  .admin-content {
-    padding: 16px;
-  }
-}

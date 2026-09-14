@@ -1,74 +1,79 @@
-:root {
-  --bg: #0b1220;
-  --bg-elevated: #111a2b;
-  --bg-sidebar: #0d1628;
-  --bg-topbar: #101a2d;
-  --bg-hover: #172338;
-  --border: #223049;
-  --text: #d7deea;
-  --text-h: #f4f7fb;
-  --muted: #8b97ab;
-  --accent: #3ddc97;
-  --accent-soft: rgba(61, 220, 151, 0.14);
-  --danger: #ff6b7a;
-  --warning: #f5c15c;
-  --shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
-  --sans: "Segoe UI", system-ui, sans-serif;
-  --mono: ui-monospace, "Cascadia Code", Consolas, monospace;
-  --sidebar-width: 260px;
-  --sidebar-collapsed: 84px;
-  --topbar-height: 72px;
-  --radius: 14px;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font: 15px/1.45 var(--sans);
-  color: var(--text);
-  background-color: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+@layer base {
+  :root {
+    --bg: #0b1220;
+    --bg-elevated: #111a2b;
+    --bg-sidebar: #0d1628;
+    --bg-topbar: #101a2d;
+    --bg-hover: #172338;
+    --border: #223049;
+    --text: #d7deea;
+    --text-h: #f4f7fb;
+    --muted: #8b97ab;
+    --accent: #3ddc97;
+    --accent-soft: rgba(61, 220, 151, 0.14);
+    --danger: #ff6b7a;
+    --warning: #f5c15c;
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+    --sans: 'Segoe UI', system-ui, sans-serif;
+    --mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+    --sidebar-width: 26rem;
+    --sidebar-collapsed: 8.4rem;
+    --topbar-height: 7.2rem;
+    --radius: 1.4rem;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    background-color: var(--bg);
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 1.6rem;
+    line-height: 1.45;
+    color: var(--text);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color-scheme: dark;
+  }
+
+  button {
+    cursor: pointer;
+  }
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  min-height: 100%;
-  background-color: var(--bg);
-}
-
-body {
-  margin: 0;
-}
-
-#root {
-  min-height: 100svh;
-}
-
-input,
-select,
-textarea,
-button {
-  color-scheme: dark;
-}
-
-h1,
-h2,
-h3,
-p {
-  margin: 0;
-}
-
-button,
-input,
-select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
 }

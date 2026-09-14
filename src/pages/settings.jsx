@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button'
+
 export default function Settings() {
   return (
     <section className="page">
@@ -27,9 +29,7 @@ export default function Settings() {
             <input type="checkbox" defaultChecked />
             Require dual approval for orders above $50,000
           </label>
-          <button type="submit" className="primary-button">
-            Save changes
-          </button>
+          <Button type="submit">Save changes</Button>
         </form>
       </article>
     </section>

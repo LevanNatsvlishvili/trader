@@ -3,14 +3,14 @@ const STATS = [
   { label: 'Open P&L', value: '$4,180', change: '+0.8%', up: true },
   { label: 'Active orders', value: '18', change: '6 fills today', up: true },
   { label: 'Buying power', value: '$91,450', change: 'Margin 2.1x', up: false },
-]
+];
 
 const POSITIONS = [
   { symbol: 'AAPL', side: 'Long', qty: 120, price: '$228.14', pnl: '+$1,240', up: true },
   { symbol: 'NVDA', side: 'Long', qty: 40, price: '$119.62', pnl: '+$860', up: true },
   { symbol: 'TSLA', side: 'Short', qty: 25, price: '$239.80', pnl: '-$310', up: false },
   { symbol: 'MSFT', side: 'Long', qty: 55, price: '$417.22', pnl: '+$490', up: true },
-]
+];
 
 export default function Dashboard() {
   return (
@@ -87,5 +87,5 @@ export default function Dashboard() {
         </article>
       </div>
     </section>
-  )
+  );
 }
