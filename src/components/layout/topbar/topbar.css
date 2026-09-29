@@ -19,6 +19,10 @@
   gap: 12px;
 }
 
+.topbar-right {
+  margin-left: auto;
+}
+
 .topbar-title {
   display: flex;
   flex-direction: column;
@@ -35,61 +39,6 @@
   font-size: 22px;
   font-weight: 600;
   letter-spacing: -0.03em;
-}
-
-.topbar-search {
-  flex: 1;
-  max-width: 420px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: auto;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 0 12px;
-  color: var(--muted);
-}
-
-.topbar-search svg,
-.icon-button svg {
-  width: 18px;
-  height: 18px;
-}
-
-.topbar-search input {
-  width: 100%;
-  border: 0;
-  background: transparent;
-  color: var(--text-h);
-  padding: 10px 0;
-  outline: none;
-}
-
-.icon-button {
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--bg-elevated);
-  color: var(--text);
-  position: relative;
-  display: grid;
-  place-items: center;
-}
-
-.icon-button:hover {
-  background: var(--bg-hover);
-}
-
-.badge {
-  position: absolute;
-  top: 8px;
-  right: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--danger);
 }
 
 .user-chip {

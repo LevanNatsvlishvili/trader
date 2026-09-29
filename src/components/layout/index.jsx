@@ -5,13 +5,11 @@ import Topbar from './topbar/index.jsx'
 import './layout.css'
 
 function MainPane() {
-  const [search, setSearch] = useState('')
-
   return (
     <div className="admin-main">
-      <Topbar search={search} onSearchChange={setSearch} />
+      <Topbar />
       <main className="admin-content">
-        <Outlet context={{ query: search }} />
+        <Outlet />
       </main>
     </div>
   )

@@ -10,7 +10,6 @@ export const FUNDED_ACCOUNTS = [
 export const OUTCOME_COLORS = {
   Win: '#4ade80',
   Lose: '#f87171',
-  'N/A': '#9ca3af',
 }
 
 export function currentMonthKey(now = new Date()) {
@@ -42,16 +41,38 @@ export function fundedTrades(trades, account) {
   return selectTrades(trades, { account })
 }
 
+export function accountsByDate(trades, accounts = FUNDED_ACCOUNTS) {
+  const lastDate = new Map()
+
+  for (const account of accounts) {
+    let latest = null
+    for (const trade of selectTrades(trades, { account })) {
+      const date = trade.dateStart ? String(trade.dateStart).slice(0, 10) : null
+      if (!date) continue
+      if (latest == null || date > latest) latest = date
+    }
+    lastDate.set(account, latest)
+  }
+
+  return [...accounts].sort((a, b) => {
+    const dateA = lastDate.get(a)
+    const dateB = lastDate.get(b)
+    if (dateA == null && dateB == null) return a.localeCompare(b)
+    if (dateA == null) return 1
+    if (dateB == null) return -1
+    return dateA.localeCompare(dateB) || a.localeCompare(b)
+  })
+}
+
 export function outcomeBreakdown(trades, account, options = {}) {
-  const counts = { Win: 0, Lose: 0, 'N/A': 0 }
+  const counts = { Win: 0, Lose: 0 }
 
   for (const trade of selectTrades(trades, { account, ...options })) {
     if (trade.outcome === 'Win') counts.Win += 1
     else if (trade.outcome === 'Lose') counts.Lose += 1
-    else counts['N/A'] += 1
   }
 
-  return ['Win', 'Lose', 'N/A'].map((name) => ({
+  return ['Win', 'Lose'].map((name) => ({
     name,
     value: counts[name],
     color: OUTCOME_COLORS[name],

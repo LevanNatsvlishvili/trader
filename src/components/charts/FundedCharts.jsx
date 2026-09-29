@@ -12,7 +12,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { FUNDED_ACCOUNTS, februaryToNowRange, outcomeBreakdown, plByMonth, selectTrades } from '@/lib/fundedCharts';
+import { accountsByDate, februaryToNowRange, outcomeBreakdown, plByMonth, selectTrades } from '@/lib/fundedCharts';
 
 function formatUsd(value) {
   const amount = Math.abs(value).toLocaleString('en-US', {
@@ -189,7 +189,7 @@ export default function FundedCharts({ trades }) {
     <div className="flex w-full flex-col gap-32">
       <ChartPair title="All funded accounts" trades={trades} allPlatforms monthRange={monthRange} fullRow />
       <div className="grid w-full min-w-0 grid-cols-6 gap-8">
-        {FUNDED_ACCOUNTS.map((account) => (
+        {accountsByDate(trades).map((account) => (
           <ChartPair key={account} title={account} trades={trades} account={account} />
         ))}
       </div>

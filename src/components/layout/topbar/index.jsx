@@ -1,12 +1,10 @@
 import { useLocation } from 'react-router-dom'
-import IconBell from '../../icons/IconBell.jsx'
-import IconSearch from '../../icons/IconSearch.jsx'
-import { getNavItem } from '../nav.js'
+import { getRoute } from '@/routes.js'
 import './topbar.css'
 
-export default function Topbar({ search, onSearchChange }) {
+export default function Topbar() {
   const { pathname } = useLocation()
-  const current = getNavItem(pathname)
+  const current = getRoute(pathname)
 
   return (
     <header className="topbar">
@@ -17,21 +15,7 @@ export default function Topbar({ search, onSearchChange }) {
         </div>
       </div>
 
-      <label className="topbar-search">
-        <IconSearch />
-        <input
-          type="search"
-          placeholder="Search markets, orders, traders"
-          value={search}
-          onChange={(event) => onSearchChange(event.target.value)}
-        />
-      </label>
-
       <div className="topbar-right">
-        <button type="button" className="icon-button" aria-label="Notifications">
-          <IconBell />
-          <span className="badge" aria-hidden="true" />
-        </button>
         <div className="user-chip">
           <span className="user-avatar" aria-hidden="true">
             LN
