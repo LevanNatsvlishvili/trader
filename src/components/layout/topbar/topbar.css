@@ -41,20 +41,31 @@
   letter-spacing: -0.03em;
 }
 
+.user-menu {
+  position: relative;
+}
+
 .user-chip {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 10px 6px 6px;
+  padding: 6px 10px 6px 12px;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 10px;
   background: var(--bg-elevated);
+  color: inherit;
+  cursor: pointer;
+}
+
+.user-chip:hover,
+.user-chip[aria-expanded='true'] {
+  background: var(--bg-hover);
 }
 
 .user-avatar {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: 8px;
   display: grid;
   place-items: center;
   background: #29456d;
@@ -67,6 +78,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  text-align: left;
 }
 
 .user-meta strong {
@@ -79,17 +91,43 @@
   font-size: 12px;
 }
 
-.topbar-logout {
-  height: 36px;
-  padding: 0 14px;
+.user-chip-caret {
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--muted);
+  flex-shrink: 0;
+}
+
+.user-menu-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 100%;
+  padding: 4px;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 10px;
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  z-index: 20;
+}
+
+.user-menu-item {
+  width: 100%;
+  display: block;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
   background: transparent;
   color: var(--muted);
   font-size: 13px;
+  text-align: left;
+  cursor: pointer;
 }
 
-.topbar-logout:hover {
+.user-menu-item:hover {
   background: var(--bg-hover);
   color: var(--text-h);
 }
