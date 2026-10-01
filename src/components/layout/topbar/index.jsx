@@ -1,9 +1,11 @@
-import { useLocation } from 'react-router-dom'
+'use client'
+
+import { usePathname } from 'next/navigation'
 import { getRoute } from '@/routes.js'
 import './topbar.css'
 
 export default function Topbar() {
-  const { pathname } = useLocation()
+  const pathname = usePathname()
   const current = getRoute(pathname)
 
   return (

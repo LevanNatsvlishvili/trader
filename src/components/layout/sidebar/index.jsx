@@ -1,9 +1,14 @@
-import { NavLink } from 'react-router-dom'
+'use client'
+
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { APP_ROUTES } from '@/routes.js'
 import IconCollapse from '../../icons/IconCollapse.jsx'
 import './sidebar.css'
 
 export default function Sidebar({ collapsed, onToggleCollapsed }) {
+  const pathname = usePathname()
+
   return (
     <aside className={`sidebar${collapsed ? ' is-collapsed' : ''}`} aria-label="Admin navigation">
       <div className="sidebar-brand">
@@ -27,20 +32,20 @@ export default function Sidebar({ collapsed, onToggleCollapsed }) {
       <nav className="sidebar-nav">
         {APP_ROUTES.map((item) => {
           const Icon = item.icon
+          const isActive = pathname === item.path
 
           return (
-            <NavLink
+            <Link
               key={item.path}
-              to={item.path}
-              end
-              className={({ isActive }) => `nav-item${isActive ? ' is-active' : ''}`}
+              href={item.path}
+              className={`nav-item${isActive ? ' is-active' : ''}`}
               title={collapsed ? item.label : undefined}
             >
               <span className="nav-icon">
                 <Icon />
               </span>
               <span className="nav-label">{item.label}</span>
-            </NavLink>
+            </Link>
           )
         })}
       </nav>

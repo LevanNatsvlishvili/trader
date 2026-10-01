@@ -1,22 +1,13 @@
+'use client'
+
 import { useState } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { usePathname } from 'next/navigation'
 import Sidebar from './sidebar/index.jsx'
 import Topbar from './topbar/index.jsx'
 import './layout.css'
 
-function MainPane() {
-  return (
-    <div className="admin-main">
-      <Topbar />
-      <main className="admin-content">
-        <Outlet />
-      </main>
-    </div>
-  )
-}
-
-export default function Layout() {
-  const { pathname } = useLocation()
+export default function AppShell({ children }) {
+  const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
 
   return (
@@ -25,7 +16,10 @@ export default function Layout() {
         collapsed={collapsed}
         onToggleCollapsed={() => setCollapsed((value) => !value)}
       />
-      <MainPane key={pathname} />
+      <div className="admin-main" key={pathname}>
+        <Topbar />
+        <main className="admin-content">{children}</main>
+      </div>
     </div>
   )
 }

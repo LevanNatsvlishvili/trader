@@ -1,10 +1,8 @@
-import { IconMarkets, IconOrders } from './components/icons/index.js'
-import Charts from './pages/charts.jsx'
-import Journal from './pages/journal.jsx'
+import { IconMarkets, IconOrders } from '@/components/icons/index.js'
 
 export const APP_ROUTES = [
-  { path: '/charts', label: 'Charts', icon: IconMarkets, Component: Charts },
-  { path: '/journal', label: 'Journal', icon: IconOrders, Component: Journal },
+  { path: '/charts', label: 'Charts', icon: IconMarkets },
+  { path: '/journal', label: 'Journal', icon: IconOrders },
 ]
 
 export const DEFAULT_PATH = APP_ROUTES[0].path

@@ -1,5 +1,8 @@
+import 'server-only'
+import { unstable_cache } from 'next/cache'
+
 const DATA_SOURCE_ID = 'f1463a17-b685-828a-985d-073bccd43827'
-const QUERY_URL = `/notion-api/v1/data_sources/${DATA_SOURCE_ID}/query`
+const REVALIDATE_SECONDS = 60
 
 function plainText(parts) {
   if (!Array.isArray(parts) || parts.length === 0) return null
@@ -40,15 +43,25 @@ export function parseTradeJournalPage(page) {
   }
 }
 
-export async function fetchTradeJournal() {
+async function queryTradeJournal() {
+  const key = process.env.NOTION_API_KEY
+  if (!key) {
+    throw new Error('Missing NOTION_API_KEY')
+  }
+
   const rows = []
   let cursor
 
   do {
-    const response = await fetch(QUERY_URL, {
+    const response = await fetch(`https://api.notion.com/v1/data_sources/${DATA_SOURCE_ID}/query`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        Authorization: `Bearer ${key}`,
+        'Notion-Version': '2025-09-03',
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(cursor ? { start_cursor: cursor } : {}),
+      cache: 'no-store',
     })
 
     if (!response.ok) {
@@ -62,6 +75,10 @@ export async function fetchTradeJournal() {
 
   return rows.sort((a, b) => String(b.dateStart).localeCompare(String(a.dateStart)))
 }
+
+export const fetchTradeJournal = unstable_cache(queryTradeJournal, ['trade-journal'], {
+  revalidate: REVALIDATE_SECONDS,
+})
 
 export function formatPl(value) {
   const amount = Math.abs(value).toFixed(2)

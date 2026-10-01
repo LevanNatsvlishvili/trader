@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
-import { fetchTradeJournal, formatDate, formatPl } from '../lib/tradeJournal.js'
+import { fetchTradeJournal, formatDate, formatPl } from '@/lib/tradeJournal.js'
 import './journal.css'
+
+export const dynamic = 'force-dynamic'
 
 function dash(value) {
   return value || '—'
@@ -25,41 +26,21 @@ function outcomeClass(outcome) {
   return 'pill na'
 }
 
-export default function Journal() {
-  const [rows, setRows] = useState([])
-  const [status, setStatus] = useState('loading')
-  const [error, setError] = useState('')
+export default async function JournalPage() {
+  let rows = []
+  let error = ''
 
-  useEffect(() => {
-    let cancelled = false
-
-    async function load() {
-      try {
-        const data = await fetchTradeJournal()
-        if (!cancelled) {
-          setRows(data)
-          setStatus('ready')
-        }
-      } catch (err) {
-        if (!cancelled) {
-          setError(err.message)
-          setStatus('error')
-        }
-      }
-    }
-
-    load()
-    return () => {
-      cancelled = true
-    }
-  }, [])
+  try {
+    rows = await fetchTradeJournal()
+  } catch (err) {
+    error = err.message
+  }
 
   return (
     <section className="page">
-      {status === 'loading' ? <p className="journal-status">Loading trades…</p> : null}
-      {status === 'error' ? <p className="journal-status">{error}</p> : null}
+      {error ? <p className="journal-status">{error}</p> : null}
 
-      {status === 'ready' ? (
+      {!error ? (
         <article className="card">
           <div className="card-header">
             <h2>Trade journal</h2>
@@ -111,9 +92,7 @@ export default function Journal() {
                           '—'
                         )}
                       </td>
-                      <td
-                        className={`pl-cell ${row.pl > 0 ? 'positive' : row.pl < 0 ? 'negative' : ''}`}
-                      >
+                      <td className={`pl-cell ${row.pl > 0 ? 'positive' : row.pl < 0 ? 'negative' : ''}`}>
                         {formatPl(row.pl)}
                       </td>
                       <td>
