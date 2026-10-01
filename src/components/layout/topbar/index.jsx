@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import { getRoute } from '@/routes.js'
-import { logout } from '@/lib/authActions.js'
+import { signOut } from 'next-auth/react'
 import './topbar.css'
 
 function initials(user) {
@@ -37,11 +37,15 @@ export default function Topbar({ user }) {
             {user?.name ? <span>{user.email}</span> : null}
           </div>
         </div>
-        <form action={logout}>
-          <button type="submit" className="topbar-logout">
-            Sign out
-          </button>
-        </form>
+        {/* Sign out through /api/auth, which middleware skips. Otherwise, on Netlify the
+            middleware's session-refresh cookie can override the deletion and keep the user signed in. */}
+        <button
+          type="button"
+          className="topbar-logout"
+          onClick={() => signOut({ redirectTo: '/login' })}
+        >
+          Sign out
+        </button>
       </div>
     </header>
   )

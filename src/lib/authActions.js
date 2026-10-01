@@ -3,7 +3,7 @@
 import { headers } from 'next/headers'
 import { AuthError } from 'next-auth'
 import bcrypt from 'bcryptjs'
-import { signIn, signOut } from '@/auth.js'
+import { signIn } from '@/auth.js'
 import { HOME_PATH } from '@/auth.config.js'
 import { db } from '@/lib/db.js'
 import { isEmailAllowed, normalizeEmail } from '@/lib/allowlist.js'
@@ -79,8 +79,4 @@ export async function register(_prevState, formData) {
   }
 
   return signInWithCredentials(email, password, HOME_PATH)
-}
-
-export async function logout() {
-  await signOut({ redirectTo: '/login' })
 }
