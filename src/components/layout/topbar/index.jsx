@@ -2,9 +2,19 @@
 
 import { usePathname } from 'next/navigation'
 import { getRoute } from '@/routes.js'
+import { logout } from '@/lib/authActions.js'
 import './topbar.css'
 
-export default function Topbar() {
+function initials(user) {
+  const source = user?.name || user?.email || ''
+  const parts = source.split(/[\s@._-]+/).filter(Boolean)
+  return parts
+    .slice(0, 2)
+    .map((part) => part[0].toUpperCase())
+    .join('')
+}
+
+export default function Topbar({ user }) {
   const pathname = usePathname()
   const current = getRoute(pathname)
 
@@ -20,13 +30,18 @@ export default function Topbar() {
       <div className="topbar-right">
         <div className="user-chip">
           <span className="user-avatar" aria-hidden="true">
-            LN
+            {initials(user)}
           </span>
           <div className="user-meta">
-            <strong>Levan N.</strong>
-            <span>Administrator</span>
+            <strong>{user?.name || user?.email}</strong>
+            {user?.name ? <span>{user.email}</span> : null}
           </div>
         </div>
+        <form action={logout}>
+          <button type="submit" className="topbar-logout">
+            Sign out
+          </button>
+        </form>
       </div>
     </header>
   )

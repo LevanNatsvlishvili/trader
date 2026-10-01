@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
-import { DEFAULT_PATH } from '@/routes.js'
+import { HOME_PATH } from '@/auth.config.js'
 
 export default function Home() {
-  redirect(DEFAULT_PATH)
+  redirect(HOME_PATH)
 }

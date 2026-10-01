@@ -1,4 +1,3 @@
-import AppShell from '@/components/layout/index.jsx'
 import './globals.css'
 import './app.css'
 
@@ -16,9 +15,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" style={{ backgroundColor: '#0b1220' }}>
-      <body>
-        <AppShell>{children}</AppShell>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

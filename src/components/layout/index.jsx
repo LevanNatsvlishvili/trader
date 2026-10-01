@@ -6,7 +6,7 @@ import Sidebar from './sidebar/index.jsx'
 import Topbar from './topbar/index.jsx'
 import './layout.css'
 
-export default function AppShell({ children }) {
+export default function AppShell({ user, children }) {
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
 
@@ -17,7 +17,7 @@ export default function AppShell({ children }) {
         onToggleCollapsed={() => setCollapsed((value) => !value)}
       />
       <div className="admin-main" key={pathname}>
-        <Topbar />
+        <Topbar user={user} />
         <main className="admin-content">{children}</main>
       </div>
     </div>
