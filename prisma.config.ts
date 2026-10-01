@@ -8,6 +8,6 @@ export default defineConfig({
   },
   datasource: {
     // Migrations need Neon's direct (non-pooled) connection; the app uses the pooled DATABASE_URL.
-    url: process.env['DIRECT_URL'] ?? process.env['DATABASE_URL'],
+    url: process.env['DATABASE_URL_UNPOOLED'] ?? process.env['DATABASE_URL'],
   },
 })

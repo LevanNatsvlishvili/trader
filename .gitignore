@@ -23,3 +23,4 @@ yarn-error.log*
 
 # prisma
 /src/generated/prisma
+.neon
